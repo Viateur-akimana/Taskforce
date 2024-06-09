@@ -1,22 +1,41 @@
-function transformString(input) {
-    const length = input.length;
-
+//Defining function for string transformation
+function stringTransformation(str) {
+    //calculating length of the string
+    const length = str.length;
+    let updatedString = '';
+  
+    // Checking if length can be divided by 15
     if (length % 15 === 0) {
-        // Reverse the string and then replace each character with its ASCII code
-        return input.split('').reverse().map(char => char.charCodeAt(0)).join(' ');
-    } else if (length % 5 === 0) {
-        // Replace each character with its ASCII code
-        return input.split('').map(char => char.charCodeAt(0)).join(' ');
-    } else if (length % 3 === 0) {
-        // Reverse the string
-        return input.split('').reverse().join('');
-    } else {
-        // Return the string as is
-        return input;
+      // Reverse the string
+      updatedString = str.split('').reverse().join('');
+  
+      // Replacing  characters with its ASCII code
+      updatedString = updatedString
+        .split('')
+        .map((char) => char.charCodeAt(0))
+        .join(' ');
     }
-}
 
-// Test cases
-console.log(transformString("Hamburger")); // Output: "regrubmaH"
-console.log(transformString("Pizza")); // Output: "80 105 122 122 97"
-console.log(transformString("Chocolate Chip Cookie")); // Output: "eikooCpihCetalocohC"
+    // Checking if length can be divided  by 3
+    else if (length % 3 === 0) {
+      updatedString = str.split('').reverse().join('');
+    }
+    // Check if the length can be divided by 5
+    else if (length % 5 === 0) {
+      updatedString = str
+        .split('')
+        .map((char) => char.charCodeAt(0))
+        .join(' ');
+    }
+    // If above conditions are not met
+    else {
+      updatedString = str;
+    }
+  
+    return updatedString;
+  }
+  
+  // Sample test
+  console.log(stringTransformation('Hamburger')); // Output: "regrubmaH"
+  console.log(stringTransformation('Pizza')); // Output: "80 105 122 122 97"
+  console.log(stringTransformation('Chocolate Chip Cookie')); // Output: "eikooCpihCetalocohC"

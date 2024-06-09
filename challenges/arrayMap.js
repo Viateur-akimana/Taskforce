@@ -1,32 +1,38 @@
-function hasSubarrayWithSum(arr, target) {
-  let start = 0;       // Initialize the start pointer
-  let currentSum = 0;  // Initialize the current sum of the subarray
+//function for checking if there exist subarray whose sum equal to  target
+function checkingSumOfSubArray(arr, target) {
+  //the initial currentSum  to zero
+  let currentSum = 0;
+  //initializing the left element
+  let left = 0;
 
-  // Loop through the array using the end pointer
-  for (let end = 0; end < arr.length; end++) {
-      currentSum += arr[end];  // Add the current element to the current sum
+  for (let right = 0; right < arr.length; right++) {
+    //currentSum is increased by current element
+    currentSum += arr[right];
 
-      // While the current sum is greater than the target and start is less than or equal to end
-      while (currentSum > target && start <= end) {
-          currentSum -= arr[start];  // Subtract the element at the start pointer from the current sum
-          start++;  // Move the start pointer to the right
-      }
-
-      // Check if the current sum equals the target
-      if (currentSum === target) {
-          return true;  // If so, return true
-      }
+    // While target is less than current sum
+    while (currentSum > target) {
+      // Subtract left element from the currentSum
+      currentSum -= arr[left];
+      //moving the left to steps
+      left++;
+    }
+    // If the current sum equals to target
+    if (currentSum === target) {
+      return true;
+    }
   }
-
-  return false;  // If no subarray is found, return false
+// If the current sum is not the same as target 
+  return false;
 }
 
-// Ex:
+// Sample usage
 const arr = [4, 2, 7, 1, 9, 5];
-const target = 7;
+const target = 17;
 
-console.log(hasSubarrayWithSum(arr, target)); // Output: true
+//true
+console.log(checkingSumOfSubArray(arr, target)); 
 
 const arr2 = [1, 2, 3, 4, 5];
-const target2 = 10;
-console.log(hasSubarrayWithSum(arr2, target2));
+const target2 = 20;
+//false
+console.log(checkingSumOfSubArray(arr2, target2)); 
